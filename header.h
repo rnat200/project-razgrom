@@ -1,11 +1,14 @@
 #pragma once
 #include <iostream>
-
+#include <cmath> 
 const int32_t MAX_SIZE{ 100 };
 
 void InputTypeElements(char&);
 void InputSize(int32_t&);
 bool CheckSize(int32_t);
+double CalculateAverage(int32_t*, int32_t);
+bool IsSimple(int32_t);
+int32_t SumOfSimpleNumbers(int32_t*, int32_t);
 
 template <class Type>
 void InputArray(Type* array, int32_t size) {
@@ -113,4 +116,40 @@ inline void RemoveNegative(char* array, int32_t size) {
         }
     }
     std::cout << "Negative elements was removed (if they was)\n";
+}
+
+template <class Type>
+void Max_MinElementsIndex(Type* array, int32_t size) {
+    Type maxIndex{};
+    Type minIndex{};
+    if (size == 0)
+    {
+        std::cout << "-1\n";
+    }
+    else {
+        Type maxVal = array[0];
+
+        for (int32_t i{ 1 }; i < size; i++)
+        {
+            if (array[i] > maxVal)
+            {
+                maxVal = array[i];
+                maxIndex = i;
+            }
+        }
+
+
+        Type minVal = array[0];
+
+        for (int32_t i{ 1 }; i < size; i++)
+        {
+            if (array[i] < minVal)
+            {
+                minVal = array[i];
+                minIndex = i;
+            }
+        }
+
+    }
+    std::cout << "Min index is " << minIndex+1 << " and Max index is " << maxIndex+1 << std::endl;
 }
