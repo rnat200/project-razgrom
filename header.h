@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-const int32_t MAX_SIZE = 100;
+const int32_t MAX_SIZE{ 100 };
 void InputTypeElements(char&);
 void InputSize(int32_t&);
 bool CheckSize(int32_t);
@@ -8,12 +8,12 @@ bool CheckSize(int32_t);
 template <class Type>
 void InputArray(Type* array, int32_t size) {
     std::cout << "Input array elements\n";
-    for (size_t i = 0; i < size; ++i) std::cin >> array[i];
+    for (size_t i{ 0 }; i < size; ++i) std::cin >> array[i];
 }
 
 template <class Type>
 void PrintArray(Type* array, int32_t size) {
-    for (size_t i = 0; i < size; ++i) std::cout << array[i] << '\t';
+    for (size_t i { 0 }; i < size; ++i) std::cout << array[i] << '\t';
     std::cout << '\n';
 }
 
@@ -25,7 +25,7 @@ void InputElement(Type& element) {
 
 template <class Type>
 int32_t FindElement(Type* array, int32_t size, Type element) {
-    for (int32_t i = 0; i < size; ++i)
+    for (int32_t i{ 0 }; i < size; ++i)
         if (array[i] == element) return i + 1;
     return -1;
 }
@@ -33,7 +33,7 @@ int32_t FindElement(Type* array, int32_t size, Type element) {
 template <class Type>
 int32_t CountElements(Type* array, int32_t size) {
     int32_t first = -1, last = -1;
-    for (int32_t i = 0; i < size; ++i) {
+    for (int32_t i{ 0 }; i < size; ++i) {
         if (array[i] == 0 || array[i] == '0') {
             first = i; break;
         }
