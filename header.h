@@ -1,4 +1,7 @@
-#pragma once
+#ifndef HEADER
+#define HEADER
+ 
+
 #include <iostream>
 #include <cmath> 
 const int32_t MAX_SIZE{ 100 };
@@ -153,3 +156,5 @@ void Max_MinElementsIndex(Type* array, int32_t size) {
     }
     std::cout << "Min index is " << minIndex+1 << " and Max index is " << maxIndex+1 << std::endl;
 }
+
+#endif
