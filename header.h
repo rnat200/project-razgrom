@@ -42,19 +42,46 @@ int32_t FindElement(Type* array, int32_t size, Type element) {
 
 template <class Type>
 int32_t CountElements(Type* array, int32_t size) {
-    int32_t first = -1, last = -1;
-    for (int32_t i{ 0 }; i < size; ++i) {
+    int32_t indexFirst{};
+    int32_t indexLast{};
+    for (int32_t i{}; i < size; ++i)
+    {
+        if (array[i] == 0)
+        {
+            if (indexFirst == 0)
+            {
+                indexFirst = i;
+            }
+            indexLast = i;
+        }
+    }
+    if (indexFirst != 0 && indexLast != 0)
+    {
+        return indexLast - indexFirst - 1;
+    }
+    return -1;
+}
 
-        if (array[i] == 0 || array[i] == '0') {
-            first = i; break;
+template <>
+inline int32_t CountElements(char* array, int32_t size) {
+    int32_t indexFirst{};
+    int32_t indexLast{};
+    for (int32_t i{}; i < size; ++i)
+    {
+        if (array[i] == '0')
+        {
+            if (indexFirst == 0)
+            {
+                indexFirst = i;
+            }
+            indexLast = i;
         }
     }
-    for (int32_t i = size - 1; i >= 0; --i) {
-        if (array[i] == 0 || array[i] == '0') {
-            last = i; break;
-        }
+    if (indexFirst != 0 && indexLast != 0)
+    {
+        return indexLast - indexFirst - 1;
     }
-    return (first != -1 && last != -1 && last > first) ? (last - first - 1) : -1;
+    return -1;
 }
 
 void Task123();
