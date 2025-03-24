@@ -119,37 +119,36 @@ inline void RemoveNegative(char* array, int32_t size) {
 }
 
 template <class Type>
-void Max_MinElementsIndex(Type* array, int32_t size) {
-    Type maxIndex{};
-    Type minIndex{};
-    if (size == 0)
+int64_t MaxElement(Type* array, int32_t size)
+{
+    
+    int32_t maxVal = array[0];
+    int32_t maxIndex{};
+    for (int32_t i = 1; i < size; i++)
     {
-        std::cout << "-1\n";
-    }
-    else {
-        Type maxVal = array[0];
-
-        for (int32_t i{ 1 }; i < size; i++)
+        if (array[i] > maxVal)
         {
-            if (array[i] > maxVal)
-            {
-                maxVal = array[i];
-                maxIndex = i;
-            }
+            maxVal = array[i];
+            maxIndex = i;
         }
-
-
-        Type minVal = array[0];
-
-        for (int32_t i{ 1 }; i < size; i++)
-        {
-            if (array[i] < minVal)
-            {
-                minVal = array[i];
-                minIndex = i;
-            }
-        }
-
     }
-    std::cout << "Min index is " << minIndex+1 << " and Max index is " << maxIndex+1 << std::endl;
+    return maxIndex;
 }
+
+template <class Type>
+int64_t MinElement(Type* array, int32_t size)
+{
+   
+    int32_t minVal = array[0];
+    int32_t minIndex{};
+    for (int32_t i = 1; i < size; i++)
+    {
+        if (array[i] < minVal)
+        {
+            minVal = array[i];
+            minIndex = i;
+        }
+    }
+    return minIndex;
+}
+

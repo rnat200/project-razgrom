@@ -15,62 +15,25 @@ void InputSize(int32_t& size) {
 bool CheckSize(int32_t size) {
     return size > 0 && size < 100;
 }
-int64_t MaxElement(int64_t* array, int32_t size)
-{
-    if (size == 0)
-    {
-        return -1;
-    }
-    int32_t MaxVal = array[0];
-    int32_t MaxIndex{};
-    for (int32_t i = 1; i < size; i++)
-    {
-        if (array[i] > MaxVal)
-        {
-            MaxVal = array[i];
-            MaxIndex = i;
-        }
-    }
-    return MaxIndex;
-}
-
-int64_t MinElement(int64_t* array, int32_t size)
-{
-    if (size == 0)
-    {
-        return -1;
-    }
-    int32_t MinVal = array[0];
-    int32_t MinIndex{};
-    for (int32_t i = 1; i < size; i++)
-    {
-        if (array[i] < MinVal)
-        {
-            MinVal = array[i];
-            MinIndex = i;
-        }
-    }
-    return MinIndex;
-}
 
 double CalculateAverage(int64_t* array, int32_t size)
 {
     double sum{};
     int32_t count{};
-    int32_t MinIndex = MinElement(array, size);
-    int32_t MaxIndex = MaxElement(array, size);
+    int32_t minIndex = MinElement(array, size);
+    int32_t maxIndex = MaxElement(array, size);
 
-    if (MinIndex == MaxIndex)
+    if (minIndex == maxIndex)
     {
-        return static_cast<double>(array[MinIndex]);
+        return static_cast<double>(array[minIndex]);
     }
 
-    if (MinIndex > MaxIndex)
+    if (minIndex > maxIndex)
     {
-        std::swap(MinIndex, MaxIndex);
+        std::swap(minIndex, maxIndex);
     }
 
-    for (int32_t i = MinIndex + 1; i < MaxIndex; ++i)
+    for (int32_t i = minIndex + 1; i < maxIndex; ++i)
     {
         sum += array[i];
         count++;
@@ -84,7 +47,7 @@ bool IsSimple(int32_t number)
     {
         return false;
     }
-    for (int32_t i = 2; i < number; ++i)
+    for (int32_t i = 2; i <= sqrt(number); ++i)
     {
         if (number % i == 0)
         {
@@ -213,19 +176,22 @@ void Task456() {
     case 'i': 
         int64_t intArray[MAX_SIZE];
         InputArray(intArray, size);
-        Max_MinElementsIndex(intArray, size);
+        std::cout << "Position of Max element of array is " << MaxElement(intArray, size)+1 << std::endl;
+        std::cout << "Position of Min element of array is " << MinElement(intArray, size)+1 << std::endl;
         std::cout << "Average of elements between max & min element: " << CalculateAverage(intArray, size) << '\n';
         std::cout << "Sum of all primal numbers: " << SumOfSimpleNumbers(intArray, size)<<std::endl;
 
     break; 
     case 'd': 
         double doubleArray[MAX_SIZE]; InputArray(doubleArray, size);
-        Max_MinElementsIndex(doubleArray, size);
+        std::cout << "Position of Max element of array is " << MaxElement(doubleArray, size)+1 << std::endl;
+        std::cout << "Position of Min element of array is " << MinElement(doubleArray, size)+1 << std::endl;
         break; 
     case 'c':
         char charArray[MAX_SIZE]; 
         InputArray(charArray, size);
-        Max_MinElementsIndex(charArray, size);
+        std::cout << "Position of Max element of array is " << MaxElement(charArray, size)+1 << std::endl;
+        std::cout<<"Posotion of Min element of array is " << MinElement(charArray, size)+1 << std::endl;
         break; 
     default: std::cout << "Invalid type!\n";
     }
