@@ -5,7 +5,7 @@
 #include <iostream>
 #include <cmath> 
 const int32_t MAX_SIZE{ 100 };
-
+int32_t ChooseSort();
 void InputTypeElements(char&);
 void InputSize(int32_t&);
 bool CheckSize(int32_t);
@@ -61,12 +61,27 @@ void Task123();
 void Task456();
 void Task789();
 
+
+
+
 template <class Type>
-void  BubbleSort(Type* array, int32_t size) {
-    for (int32_t i{ 0 }; i < size-1; i++) {
-        for (int32_t j{ 0 }; j < size-i-1; j++) {
-            if (array[j] > array[j + 1]) {
-                std::swap(array[j], array[j + 1]);
+void  BubbleSort(Type* array, int32_t size) {//ссылка на функцию для выбора сортировки (по возрастснию, по убыванию)
+    int32_t sort{ ChooseSort() };
+    if (sort == 1) {
+        for (int32_t i{ 0 }; i < size - 1; i++) {
+            for (int32_t j{ 0 }; j < size - i - 1; j++) {
+                if (array[j] > array[j + 1]) {
+                    std::swap(array[j], array[j + 1]);
+                }
+            }
+        }
+    }
+    else {
+        for (int32_t i{ 0 }; i < size - 1; i++) {
+            for (int32_t j{ 0 }; j < size - i - 1; j++) {
+                if (array[j] < array[j + 1]) {
+                    std::swap(array[j], array[j + 1]);
+                }
             }
         }
     }
@@ -75,16 +90,10 @@ void  BubbleSort(Type* array, int32_t size) {
 
 template <class Type>
 void  ReverseArray(Type* array, int32_t size) {
-    if (size % 2) {
+   
         for (int32_t i{ 0 }; i < (size / 2); i++) {
             std::swap(array[i], array[size - i - 1]);
         }
-    }
-    else {
-        for (int32_t i{ 0 }; i <= ((size / 2)-1); i++) {
-            std::swap(array[i], array[size - i - 1]);
-        }
-    }
     std::cout << "Array was reversed\n";
 }
 
@@ -97,27 +106,18 @@ void CopyArray(Type* array1, Type*array2,int32_t size) {
 
 template <class Type>
 void  RemoveNegative(Type* array, int32_t size) {
+    Type arraysecond[MAX_SIZE];
+    int32_t j{ 0 };
     for (int32_t i{ 0 }; i < size; i++) {
-        if (array[i] < 0) {
-            array[i] = 0;
-            for (int32_t j{ i }; j < size-1; j++) {
-                std::swap(array[j], array[j + 1]);
-            }
+        if (array[i] >= 0) {
+            arraysecond[j] = array[i];
+            j++;
         }
     }
-    std::cout << "Negative elements was removed (if they was)\n";
-}
-
-template <>
-inline void RemoveNegative(char* array, int32_t size) {
-    for (int32_t i{ 0 }; i < size; i++) {
-        if (array[i] == '-') {
-            array[i] = '0';
-            for (int32_t j{ i }; j < size - 1; j++) {
-                std::swap(array[j], array[j + 1]);
-            }
-        }
+    for (int32_t i{ 0 }; i < size - j; i++) {
+        arraysecond[i + j] = 0;
     }
+    CopyArray(arraysecond, array,size);
     std::cout << "Negative elements was removed (if they was)\n";
 }
 
