@@ -12,8 +12,10 @@ void InputSize(int32_t& size) {
     std::cin >> size;
 }
 
+
+
 bool CheckSize(int32_t size) {
-    return size > 0 && size < 100;
+    return size >= 0 && size < 100;
 }
 
 double CalculateAverage(int64_t* array, int32_t size)
@@ -196,6 +198,18 @@ void Task456() {
     default: std::cout << "Invalid type!\n";
     }
     
+}
+
+int32_t ChooseSort() {
+    int32_t sort{ };
+    std::cout << "Input sorting type \n";
+    std::cout << "1 - From lowest to highest, 2 - From highest to lowest\n";
+    std::cin >> sort;
+    if (sort != 1 && sort != 2) {
+        std::cout << "Wrong sorting type\n";
+        exit(-1);
+    }
+    return sort;
 }
 
 void Task789() {
